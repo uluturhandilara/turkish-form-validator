@@ -47,12 +47,12 @@
   "author": "Dilara Uluturhan <dilarauluturhan@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dilarauluturhan/turkish-form-validator.git"
+    "url": "git+https://github.com/uluturhandilara/turkish-form-validator.git"
   },
   "bugs": {
-    "url": "https://github.com/dilarauluturhan/turkish-form-validator/issues"
+    "url": "https://github.com/uluturhandilara/turkish-form-validator/issues"
   },
-  "homepage": "https://github.com/dilarauluturhan/turkish-form-validator#readme",
+  "homepage": "https://github.com/uluturhandilara/turkish-form-validator#readme",
   "license": "MIT",
   "sideEffects": false,
   "engines": {
