@@ -1,59 +1,11 @@
 export interface PhoneValidationResult {
   valid: boolean;
   formatted: string | null;
-  operator: string | null;
   message: string;
 }
 
-const OPERATOR_CODES: Record<string, string> = {
-  "530": "Turkcell",
-  "531": "Turkcell",
-  "532": "Turkcell",
-  "533": "Turkcell",
-  "534": "Turkcell",
-  "535": "Turkcell",
-  "536": "Turkcell",
-  "537": "Turkcell",
-  "538": "Turkcell",
-  "539": "Turkcell",
-  "540": "Vodafone",
-  "541": "Vodafone",
-  "542": "Vodafone",
-  "543": "Vodafone",
-  "544": "Vodafone",
-  "545": "Vodafone",
-  "546": "Vodafone",
-  "547": "Vodafone",
-  "548": "Vodafone",
-  "549": "Vodafone",
-  "550": "Türk Telekom",
-  "551": "Türk Telekom",
-  "552": "Türk Telekom",
-  "553": "Türk Telekom",
-  "554": "Türk Telekom",
-  "555": "Türk Telekom",
-  "556": "Türk Telekom",
-  "557": "Türk Telekom",
-  "558": "Türk Telekom",
-  "559": "Türk Telekom",
-  "501": "Diğer",
-  "505": "Diğer",
-  "506": "Diğer",
-  "507": "Diğer",
-  "508": "Diğer",
-  "509": "Diğer",
-};
-
 function cleanPhoneNumber(phone: string): string {
   return phone.replace(/[\s\-\(\)\+]/g, "").replace(/^90/, "0");
-}
-
-function getOperatorCode(phone: string): string | null {
-  if (phone.length >= 3) {
-    const code = phone.substring(1, 4);
-    return OPERATOR_CODES[code] || null;
-  }
-  return null;
 }
 
 export function validateTurkishPhone(phone: string): PhoneValidationResult {
@@ -61,7 +13,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Telefon numarası boş olamaz",
     };
   }
@@ -72,7 +23,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Telefon numarası sadece rakam içermelidir",
     };
   }
@@ -81,7 +31,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Telefon numarası 11 haneli olmalıdır",
     };
   }
@@ -90,7 +39,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Telefon numarası 11 haneden uzun olamaz",
     };
   }
@@ -99,7 +47,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Telefon numarası 0 ile başlamalıdır",
     };
   }
@@ -108,19 +55,7 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
     return {
       valid: false,
       formatted: null,
-      operator: null,
       message: "Sadece cep telefonu numaraları kabul edilir (5XX)",
-    };
-  }
-
-  const operator = getOperatorCode(cleaned);
-
-  if (!operator) {
-    return {
-      valid: false,
-      formatted: null,
-      operator: null,
-      message: "Geçersiz operatör kodu",
     };
   }
 
@@ -129,7 +64,6 @@ export function validateTurkishPhone(phone: string): PhoneValidationResult {
   return {
     valid: true,
     formatted: formatted,
-    operator: operator,
     message: "Geçerli telefon numarası",
   };
 }
