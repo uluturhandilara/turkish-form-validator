@@ -271,7 +271,7 @@ if (result.valid) {
 }
 ```
 
-Kurumsal şirketlerde vergi numaralarının `0` ile başlayabilmesine izin vermek için:
+Kurumsal (Ltd./A.Ş.) mükellefler için vergi numaraları 0 ile başlayabilir. Bu senaryoları desteklemek için ikinci parametre olarak `isCorporate: true` gönderebilirsiniz:
 
 ```typescript
 const corporateResult = validateTaxNo("0000000005", { isCorporate: true });

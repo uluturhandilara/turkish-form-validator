@@ -109,7 +109,7 @@ function formatTaxNoFunction(taxNo) {
   const cleaned = cleanTaxNo(taxNo);
   return formatTaxNo(cleaned);
 }
-function validateTaxNo(taxNo) {
+function validateTaxNo(taxNo, options = {}) {
   const fail = (message) => ({
     valid: false,
     formatted: null,
@@ -135,7 +135,8 @@ function validateTaxNo(taxNo) {
   if (cleaned.length > 10) {
     return fail("Vergi numaras\u0131 10 haneden uzun olamaz");
   }
-  if (cleaned[0] === "0") {
+  const isCorporate = options.isCorporate ?? false;
+  if (!isCorporate && cleaned[0] === "0") {
     return fail("Vergi numaras\u0131 0 ile ba\u015Flayamaz");
   }
   const digits = cleaned.split("").map(Number);

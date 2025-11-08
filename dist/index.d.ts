@@ -25,8 +25,11 @@ interface TaxNoValidationResult {
     message: string;
     checksum: boolean | null;
 }
+interface TaxNoValidationOptions {
+    isCorporate?: boolean;
+}
 declare function formatTaxNoFunction(taxNo: string): string;
-declare function validateTaxNo(taxNo: string): TaxNoValidationResult;
+declare function validateTaxNo(taxNo: string, options?: TaxNoValidationOptions): TaxNoValidationResult;
 
 interface PlateValidationResult {
     valid: boolean;
@@ -55,4 +58,4 @@ declare function getBankName(bankCode: string): string | null;
 declare function formatIBAN(iban: string): string;
 declare function validateTurkishIBAN(iban: string): IBANValidationResult;
 
-export { type IBANValidationResult, type PhoneValidationResult, type PlateValidationResult, type TaxNoValidationResult, type ValidateTCKNOptions, type ValidationResult, calculateCheckDigit, formatIBAN, formatTaxNoFunction, getBankName, validateTCKN, validateTaxNo, validateTurkishIBAN, validateTurkishPhone, validateTurkishPlate };
+export { type IBANValidationResult, type PhoneValidationResult, type PlateValidationResult, type TaxNoValidationOptions, type TaxNoValidationResult, type ValidateTCKNOptions, type ValidationResult, calculateCheckDigit, formatIBAN, formatTaxNoFunction, getBankName, validateTCKN, validateTaxNo, validateTurkishIBAN, validateTurkishPhone, validateTurkishPlate };
