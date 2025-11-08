@@ -5,6 +5,10 @@ export interface TaxNoValidationResult {
   checksum: boolean | null;
 }
 
+export interface TaxNoValidationOptions {
+  isCorporate?: boolean;
+}
+
 function cleanTaxNo(taxNo: string): string {
   return taxNo.replace(/[\s\-]/g, "");
 }
@@ -24,7 +28,10 @@ export function formatTaxNoFunction(taxNo: string): string {
   return formatTaxNo(cleaned);
 }
 
-export function validateTaxNo(taxNo: string): TaxNoValidationResult {
+export function validateTaxNo(
+  taxNo: string,
+  options: TaxNoValidationOptions = {}
+): TaxNoValidationResult {
   const fail = (message: string): TaxNoValidationResult => ({
     valid: false,
     formatted: null,
@@ -57,7 +64,9 @@ export function validateTaxNo(taxNo: string): TaxNoValidationResult {
     return fail("Vergi numarası 10 haneden uzun olamaz");
   }
 
-  if (cleaned[0] === "0") {
+  const isCorporate = options.isCorporate ?? false;
+
+  if (!isCorporate && cleaned[0] === "0") {
     return fail("Vergi numarası 0 ile başlayamaz");
   }
 

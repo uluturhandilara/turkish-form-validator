@@ -28,6 +28,13 @@ describe("validateTaxNo", () => {
     expect(result.message).toBe("Vergi numarası 0 ile başlayamaz");
   });
 
+  it("should allow number starting with 0 when corporate flag is set", () => {
+    const result = validateTaxNo("0000000005", { isCorporate: true });
+    expect(result.valid).toBe(true);
+    expect(result.formatted).toBe("000-000-000-5");
+    expect(result.checksum).toBe(true);
+  });
+
   it("should reject number that is too short", () => {
     const result = validateTaxNo("123456789");
     expect(result.valid).toBe(false);

@@ -67,6 +67,12 @@ if (result.valid) {
 }
 ```
 
+Kurumsal (Ltd./A.Ş.) mükellefler için vergi numaraları `0` ile başlayabilir. Bu senaryoları desteklemek için ikinci parametre olarak `isCorporate: true` gönderebilirsiniz:
+
+```typescript
+const corporateResult = validateTaxNo("0000000005", { isCorporate: true });
+```
+
 ### License Plate Validation
 
 ```typescript
@@ -263,6 +269,13 @@ if (result.valid) {
 } else {
   console.log(result.message);
 }
+```
+
+Kurumsal şirketlerde vergi numaralarının `0` ile başlayabilmesine izin vermek için:
+
+```typescript
+const corporateResult = validateTaxNo("0000000005", { isCorporate: true });
+console.log(corporateResult.valid); // true
 ```
 
 ### Plaka Validasyonu
